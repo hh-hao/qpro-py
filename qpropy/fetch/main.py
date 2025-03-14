@@ -279,7 +279,51 @@ class QuestionProClient:
 
     # -------------- Block API --------------
 
-    #####
+    def get_blocks(self, page: int = 1, per_page: int = 100) -> Dict[str, Any]:
+        if not self.survey_id:
+            raise ValueError("Survey ID is not set.")
+
+        return self._request(
+            "GET",
+            f"{self.base_url}/surveys/{self.survey_id}/blocks?page={page}&perPage={per_page}",
+        )
+        
+    def get_block(self, block_id: int):
+        if not self.survey_id:
+            raise ValueError("Survey ID is not set.")
+
+        return self._request(
+            "GET", f"{self.base_url}/surveys/{self.survey_id}/block/{block_id}"
+        )
+        
+    def create_block(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.survey_id:
+            raise ValueError("User ID is not set.")
+
+        return self._request(
+            "POST",
+            f"{self.base_url}/users/{self.user_id}/surveys/{self.survey_id}/blocks",
+            json=data,
+        )
+
+    def update_block(self, block_id: int, data: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.survey_id:
+            raise ValueError("Survey ID is not set.")
+
+        return self._request(
+            "PUT",
+            f"{self.base_url}/users/{self.user_id}/surveys/{self.survey_id}/questions/{block_id}",
+            json=data,
+        )
+
+    def delete_block(self, block_id: int) -> Dict[str, Any]:
+        if not self.survey_id:
+            raise ValueError("Survey ID is not set.")
+
+        return self._request(
+            "DELETE",
+            f"{self.base_url}/users/{self.user_id}/surveys/{self.survey_id}/questions/{block_id}",
+        )
 
     # -------------- Question API --------------
     def get_questions(self, page: int = 1, per_page: int = 100) -> Dict[str, Any]:
