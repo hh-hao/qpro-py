@@ -368,7 +368,11 @@ class QuestionProClient:
             f"{self.base_url}/surveys/{self.survey_id}/responses?page={page}&perPage={per_page}"
         )
         
+<<<<<<< HEAD
     def get_response(self, response_id: int):
+=======
+    def get_response(self, response_id: int) -> Dict[str, Any]:
+>>>>>>> fc02a4b (reset commit)
         if not self.survey_id:
             raise ValueError("Survey ID is not set.")
 
@@ -377,4 +381,25 @@ class QuestionProClient:
             f"{self.base_url}/surveys/{self.survey_id}/responses/{response_id}"
         )
         
+<<<<<<< HEAD
         
+=======
+    def create_response(self, data: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.survey_id:
+            raise ValueError("Survey ID is not set.")
+
+        return self._request(
+            "POST",
+            f"{self.base_url}/surveys/{self.survey_id}/responses",
+            json=data
+        )
+        
+    def delete_response(self, response_id: int) -> Dict[str, Any]:
+        if not self.survey_id:
+            raise ValueError("Survey ID is not set.")
+
+        return self._request(
+            "DELETE",
+            f"{self.base_url}/surveys/{self.survey_id}/responses/{response_id}"
+        )
+>>>>>>> fc02a4b (reset commit)
