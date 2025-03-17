@@ -349,7 +349,7 @@ class QuestionProClient:
 
         return self._request(
             "POST",
-            f"{self.base_url}/users/{self.user_id}/surveys/{self.survey_id}/questions",
+            f"{self.base_url}/surveys/{self.survey_id}/questions",
             json=data,
         )
 
@@ -359,7 +359,7 @@ class QuestionProClient:
 
         return self._request(
             "PUT",
-            f"{self.base_url}/users/{self.user_id}/surveys/{self.survey_id}/questions/{question_id}",
+            f"{self.base_url}/surveys/{self.survey_id}/questions/{question_id}",
             json=data,
         )
 
@@ -369,7 +369,7 @@ class QuestionProClient:
 
         return self._request(
             "DELETE",
-            f"{self.base_url}/users/{self.user_id}/surveys/{self.survey_id}/questions/{question_id}",
+            f"{self.base_url}/surveys/{self.survey_id}/questions/{question_id}",
         )
 
     # -------------- Answer API --------------
